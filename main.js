@@ -4,44 +4,81 @@
 
 
 // ==========================================
-// 1. ELEMENTOS DA PÁGINA
+// ELEMENTOS DO HTML
 // ==========================================
 
-const campoSenha = document.querySelector('#campo-senha');
+const campoSenha =
+    document.querySelector('#campo-senha');
 
-const numeroSenha = document.querySelector('#numero-senha');
+const numeroSenha =
+    document.querySelector('#numero-senha');
 
-const botaoDiminui = document.querySelector('#botao-diminui');
-const botaoAumenta = document.querySelector('#botao-aumenta');
+const botaoDiminui =
+    document.querySelector('#botao-diminui');
 
-const botaoGerar = document.querySelector('#botao-gerar');
-const botaoCopiar = document.querySelector('#botao-copiar');
+const botaoAumenta =
+    document.querySelector('#botao-aumenta');
 
-const checkMaiusculas = document.querySelector('#maiusculas');
-const checkMinusculas = document.querySelector('#minusculas');
-const checkNumeros = document.querySelector('#numeros');
-const checkSimbolos = document.querySelector('#simbolos');
+const botaoGerar =
+    document.querySelector('#botao-gerar');
 
-const checkCarinha = document.querySelector('#check-carinha');
-const checkAnimais = document.querySelector('#check-animais');
-const checkUnicode = document.querySelector('#check-unicode');
-const checkCidade = document.querySelector('#check-cidade');
-const checkSemRepeticao = document.querySelector('#check-sem-repeticao');
+const botaoCopiar =
+    document.querySelector('#botao-copiar');
 
-const forcaSenha = document.querySelector('.forca');
-const textoForca = document.querySelector('#texto-forca');
 
-const contadorCaracteres = document.querySelector(
-    '#contador-caracteres'
-);
+// CHECKBOXES
 
-const mensagemErro = document.querySelector('#mensagem-erro');
+const checkMaiusculas =
+    document.querySelector('#maiusculas');
 
-const mensagemCopia = document.querySelector('#mensagem-copia');
+const checkMinusculas =
+    document.querySelector('#minusculas');
+
+const checkNumeros =
+    document.querySelector('#numeros');
+
+const checkSimbolos =
+    document.querySelector('#simbolos');
+
+const checkCarinha =
+    document.querySelector('#check-carinha');
+
+const checkAnimais =
+    document.querySelector('#check-animais');
+
+const checkUnicode =
+    document.querySelector('#check-unicode');
+
+const checkCidade =
+    document.querySelector('#check-cidade');
+
+const checkSemRepeticao =
+    document.querySelector('#check-sem-repeticao');
+
+
+// FORÇA
+
+const barraForca =
+    document.querySelector('#barra-forca');
+
+const textoForca =
+    document.querySelector('#texto-forca');
+
+
+// OUTROS
+
+const contadorCaracteres =
+    document.querySelector('#contador-caracteres');
+
+const mensagemErro =
+    document.querySelector('#mensagem-erro');
+
+const mensagemCopia =
+    document.querySelector('#mensagem-copia');
 
 
 // ==========================================
-// 2. CONFIGURAÇÕES
+// CONFIGURAÇÕES
 // ==========================================
 
 let tamanhoSenha = 12;
@@ -51,7 +88,7 @@ const tamanhoMaximo = 32;
 
 
 // ==========================================
-// 3. CARACTERES DISPONÍVEIS
+// CARACTERES
 // ==========================================
 
 const letrasMaiusculas =
@@ -67,9 +104,9 @@ const simbolos =
     '!@#$%&*?+-_=<>';
 
 
-// Emojis precisam ser tratados como elementos de array.
-// Isso evita problemas com caracteres Unicode compostos
-// por dois valores internos do JavaScript.
+// ==========================================
+// EMOJIS
+// ==========================================
 
 const emojisCarinhas = [
     '😀',
@@ -82,6 +119,7 @@ const emojisCarinhas = [
     '😺'
 ];
 
+
 const emojisAnimais = [
     '🦁',
     '🦊',
@@ -92,6 +130,11 @@ const emojisAnimais = [
     '🐸',
     '🐵'
 ];
+
+
+// ==========================================
+// UNICODE
+// ==========================================
 
 const unicodeEspecial = [
     '©',
@@ -110,98 +153,96 @@ const unicodeEspecial = [
     '♦'
 ];
 
+
+// ==========================================
+// CIDADES
+// ==========================================
+
 const cidades = [
     'Curitiba',
     'Cascavel',
     'Toledo',
     'Londrina',
-    'Maringá',
-    'PontaGrossa'
+    'Maringa',
+    'Paranagua',
+    'Pinhais',
+    'Colombo'
 ];
 
 
 // ==========================================
-// 4. ATUALIZA O NÚMERO NA TELA
+// MOSTRA O TAMANHO INICIAL
 // ==========================================
 
-numeroSenha.textContent = tamanhoSenha;
-
-
-// ==========================================
-// 5. DIMINUIR TAMANHO
-// ==========================================
-
-botaoDiminui.addEventListener('click', () => {
-
-    if (tamanhoSenha > tamanhoMinimo) {
-
-        tamanhoSenha--;
-
-        numeroSenha.textContent = tamanhoSenha;
-
-        geraSenha();
-    }
-
-});
+numeroSenha.textContent =
+    tamanhoSenha;
 
 
 // ==========================================
-// 6. AUMENTAR TAMANHO
+// FUNÇÃO PARA ESCOLHER ALEATORIAMENTE
 // ==========================================
 
-botaoAumenta.addEventListener('click', () => {
+function aleatorio(array) {
 
-    if (tamanhoSenha < tamanhoMaximo) {
+    const indice =
+        Math.floor(
+            Math.random() * array.length
+        );
 
-        tamanhoSenha++;
-
-        numeroSenha.textContent = tamanhoSenha;
-
-        geraSenha();
-    }
-
-});
+    return array[indice];
+}
 
 
 // ==========================================
-// 7. CRIAR ALFABETO
+// CRIA O ALFABETO
 // ==========================================
 
-function criaAlfabeto() {
+function criarAlfabeto() {
 
     let alfabeto = [];
+
+
+    // MAIÚSCULAS
 
     if (checkMaiusculas.checked) {
 
         alfabeto.push(
-            ...[...letrasMaiusculas]
+            ...letrasMaiusculas.split('')
         );
     }
 
+
+    // MINÚSCULAS
 
     if (checkMinusculas.checked) {
 
         alfabeto.push(
-            ...[...letrasMinusculas]
+            ...letrasMinusculas.split('')
         );
     }
 
+
+    // NÚMEROS
 
     if (checkNumeros.checked) {
 
         alfabeto.push(
-            ...[...numeros]
+            ...numeros.split('')
         );
     }
 
+
+    // SÍMBOLOS
 
     if (checkSimbolos.checked) {
 
         alfabeto.push(
-            ...[...simbolos]
+            ...simbolos.split('')
         );
     }
 
+
+    // CARINHAS
 
     if (checkCarinha.checked) {
 
@@ -211,6 +252,8 @@ function criaAlfabeto() {
     }
 
 
+    // ANIMAIS
+
     if (checkAnimais.checked) {
 
         alfabeto.push(
@@ -218,6 +261,8 @@ function criaAlfabeto() {
         );
     }
 
+
+    // UNICODE
 
     if (checkUnicode.checked) {
 
@@ -232,31 +277,7 @@ function criaAlfabeto() {
 
 
 // ==========================================
-// 8. ESCOLHER ELEMENTO ALEATÓRIO
-// ==========================================
-
-function elementoAleatorio(array) {
-
-    const indice = Math.floor(
-        Math.random() * array.length
-    );
-
-    return array[indice];
-}
-
-
-// ==========================================
-// 9. ESCOLHER CIDADE
-// ==========================================
-
-function cidadeAleatoria() {
-
-    return elementoAleatorio(cidades);
-}
-
-
-// ==========================================
-// 10. GERAR SENHA
+// GERAR SENHA
 // ==========================================
 
 function geraSenha() {
@@ -264,11 +285,16 @@ function geraSenha() {
     mensagemErro.textContent = '';
     mensagemCopia.textContent = '';
 
-    let alfabeto = criaAlfabeto();
+
+    // Cria o alfabeto com as opções
+    // selecionadas.
+
+    let alfabeto =
+        criarAlfabeto();
 
 
     // ======================================
-    // NENHUM CARACTERE SELECIONADO
+    // NADA SELECIONADO
     // ======================================
 
     if (alfabeto.length === 0) {
@@ -277,21 +303,21 @@ function geraSenha() {
 
         contadorCaracteres.textContent = '0';
 
-        forcaSenha.className = 'forca vazia';
+        barraForca.className =
+            'forca';
 
-        textoForca.textContent = 'Sem senha';
-
-        textoForca.className = '';
+        textoForca.textContent =
+            'Nenhum caractere selecionado';
 
         mensagemErro.textContent =
-            'Selecione pelo menos um tipo de caractere.';
+            'Selecione pelo menos uma opção.';
 
         return;
     }
 
 
     // ======================================
-    // NÃO REPETIR CARACTERES
+    // VERIFICA REPETIÇÃO
     // ======================================
 
     if (
@@ -301,53 +327,58 @@ function geraSenha() {
 
         campoSenha.value = '';
 
-        mensagemErro.textContent =
-            `Não é possível gerar uma senha de ${tamanhoSenha} caracteres ` +
-            `sem repetição. Existem apenas ${alfabeto.length} opções disponíveis.`;
-
         contadorCaracteres.textContent = '0';
 
-        forcaSenha.className = 'forca vazia';
+        barraForca.className =
+            'forca';
 
-        textoForca.textContent = 'Erro';
+        textoForca.textContent =
+            'Não foi possível gerar';
+
+        mensagemErro.textContent =
+            'Você escolheu não repetir caracteres, mas o conjunto selecionado não possui caracteres suficientes.';
 
         return;
     }
 
 
     // ======================================
-    // GERAR CARACTERES
+    // GERAÇÃO
     // ======================================
 
     let senhaArray = [];
 
-    let alfabetoDisponivel = [
+    let caracteresDisponiveis = [
         ...alfabeto
     ];
 
 
-    for (
-        let i = 0;
-        i < tamanhoSenha;
-        i++
+    while (
+        senhaArray.length < tamanhoSenha
     ) {
 
-        const indice = Math.floor(
-            Math.random() *
-            alfabetoDisponivel.length
-        );
+        const indice =
+            Math.floor(
+                Math.random() *
+                caracteresDisponiveis.length
+            );
+
+
+        const caractere =
+            caracteresDisponiveis[indice];
+
 
         senhaArray.push(
-            alfabetoDisponivel[indice]
+            caractere
         );
 
 
-        // Remove o caractere escolhido
-        // quando não pode haver repetição.
+        // Se a opção "não repetir" estiver
+        // marcada, remove o caractere.
 
         if (checkSemRepeticao.checked) {
 
-            alfabetoDisponivel.splice(
+            caracteresDisponiveis.splice(
                 indice,
                 1
             );
@@ -355,172 +386,300 @@ function geraSenha() {
     }
 
 
-    let senha = senhaArray.join('');
+    // ======================================
+    // TRANSFORMA ARRAY EM STRING
+    // ======================================
+
+    let senha =
+        senhaArray.join('');
 
 
     // ======================================
-    // ADICIONAR CIDADE
+    // CIDADE
     // ======================================
 
     if (checkCidade.checked) {
 
-        const cidade = cidadeAleatoria();
+        const cidade =
+            aleatorio(cidades);
 
-        senha = cidade + '-' + senha;
+
+        /*
+         * A cidade entra na senha sem
+         * ultrapassar o tamanho escolhido.
+         */
+
+        const cidadeDisponivel =
+            cidade.substring(
+                0,
+                tamanhoSenha
+            );
+
+
+        const restante =
+            tamanhoSenha -
+            cidadeDisponivel.length;
+
+
+        if (restante > 0) {
+
+            let complemento =
+                '';
+
+            let alfabetoCidade =
+                criarAlfabeto();
+
+
+            while (
+                complemento.length < restante
+            ) {
+
+                const indice =
+                    Math.floor(
+                        Math.random() *
+                        alfabetoCidade.length
+                    );
+
+
+                const caractere =
+                    alfabetoCidade[indice];
+
+
+                if (
+                    checkSemRepeticao.checked &&
+                    cidadeDisponivel.includes(caractere)
+                ) {
+                    continue;
+                }
+
+
+                complemento +=
+                    caractere;
+
+
+                if (
+                    checkSemRepeticao.checked
+                ) {
+
+                    alfabetoCidade.splice(
+                        indice,
+                        1
+                    );
+                }
+            }
+
+
+            senha =
+                cidadeDisponivel +
+                complemento;
+
+        } else {
+
+            senha =
+                cidadeDisponivel;
+        }
     }
 
 
     // ======================================
-    // MOSTRAR SENHA
+    // MOSTRA A SENHA
     // ======================================
 
-    campoSenha.value = senha;
+    campoSenha.value =
+        senha;
+
+
+    // ======================================
+    // CONTADOR
+    // ======================================
 
     contadorCaracteres.textContent =
         [...senha].length;
 
 
     // ======================================
-    // CLASSIFICAR FORÇA
+    // FORÇA
     // ======================================
 
-    classificaSenha(
-        alfabeto.length,
-        senha
+    classificarForca(
+        senha,
+        alfabeto.length
     );
 }
 
 
 // ==========================================
-// 11. CLASSIFICAR FORÇA DA SENHA
+// CLASSIFICAR FORÇA
 // ==========================================
 
-function classificaSenha(
-    tamanhoAlfabeto,
-    senha
+function classificarForca(
+    senha,
+    tamanhoAlfabeto
 ) {
 
-    forcaSenha.classList.remove(
-        'fraca',
-        'media',
-        'forte',
-        'vazia'
-    );
-
-    textoForca.classList.remove(
-        'texto-fraca',
-        'texto-media',
-        'texto-forte'
-    );
-
-
-    // ======================================
-    // ENTROPIA
-    // ======================================
-
-    const quantidadeCaracteres =
+    const quantidade =
         [...senha].length;
 
-    const entropia =
-        quantidadeCaracteres *
-        Math.log2(tamanhoAlfabeto);
+
+    let entropia =
+        quantidade *
+        Math.log2(
+            tamanhoAlfabeto
+        );
+
+
+    // Remove classes antigas
+
+    barraForca.className =
+        'forca';
 
 
     // ======================================
-    // SENHA FRACA
+    // FRACA
     // ======================================
 
     if (entropia < 35) {
 
-        forcaSenha.classList.add(
+        barraForca.classList.add(
             'fraca'
         );
 
         textoForca.textContent =
-            'Fraca';
-
-        textoForca.classList.add(
-            'texto-fraca'
-        );
+            'Senha fraca';
     }
 
 
     // ======================================
-    // SENHA MÉDIA
+    // MÉDIA
     // ======================================
 
     else if (entropia < 57) {
 
-        forcaSenha.classList.add(
+        barraForca.classList.add(
             'media'
         );
 
         textoForca.textContent =
-            'Média';
-
-        textoForca.classList.add(
-            'texto-media'
-        );
+            'Senha média';
     }
 
 
     // ======================================
-    // SENHA FORTE
+    // FORTE
     // ======================================
 
     else {
 
-        forcaSenha.classList.add(
+        barraForca.classList.add(
             'forte'
         );
 
         textoForca.textContent =
-            'Forte';
-
-        textoForca.classList.add(
-            'texto-forte'
-        );
+            'Senha forte';
     }
 }
 
 
 // ==========================================
-// 12. CHECKBOXES
+// DIMINUIR TAMANHO
 // ==========================================
 
-const checkboxes = document.querySelectorAll(
-    '.parametro-senha__checkbox, .opcoes-extras .checkbox'
+botaoDiminui.addEventListener(
+    'click',
+    function () {
+
+        if (
+            tamanhoSenha >
+            tamanhoMinimo
+        ) {
+
+            tamanhoSenha--;
+
+            numeroSenha.textContent =
+                tamanhoSenha;
+
+            geraSenha();
+        }
+
+    }
 );
 
-checkboxes.forEach((checkbox) => {
 
-    checkbox.addEventListener(
-        'change',
-        geraSenha
-    );
+// ==========================================
+// AUMENTAR TAMANHO
+// ==========================================
 
-});
+botaoAumenta.addEventListener(
+    'click',
+    function () {
+
+        if (
+            tamanhoSenha <
+            tamanhoMaximo
+        ) {
+
+            tamanhoSenha++;
+
+            numeroSenha.textContent =
+                tamanhoSenha;
+
+            geraSenha();
+        }
+
+    }
+);
 
 
 // ==========================================
-// 13. BOTÃO GERAR
+// BOTÃO GERAR
 // ==========================================
 
 botaoGerar.addEventListener(
     'click',
-    geraSenha
+    function () {
+
+        geraSenha();
+
+    }
 );
 
 
 // ==========================================
-// 14. COPIAR SENHA
+// CHECKBOXES
+// ==========================================
+
+const todosCheckboxes =
+    document.querySelectorAll(
+        '.checkbox'
+    );
+
+
+todosCheckboxes.forEach(
+    function (checkbox) {
+
+        checkbox.addEventListener(
+            'change',
+            function () {
+
+                geraSenha();
+
+            }
+        );
+
+    }
+);
+
+
+// ==========================================
+// COPIAR SENHA
 // ==========================================
 
 botaoCopiar.addEventListener(
     'click',
-    async () => {
+    async function () {
 
-        const senha = campoSenha.value;
+        const senha =
+            campoSenha.value;
 
 
         if (!senha) {
@@ -539,12 +698,9 @@ botaoCopiar.addEventListener(
             );
 
             mensagemCopia.textContent =
-                'Senha copiada para a área de transferência!';
+                '✓ Senha copiada!';
 
         } catch (erro) {
-
-            // Alternativa para navegadores
-            // que bloqueiam Clipboard API.
 
             campoSenha.select();
 
@@ -553,22 +709,26 @@ botaoCopiar.addEventListener(
             );
 
             mensagemCopia.textContent =
-                'Senha copiada!';
+                '✓ Senha copiada!';
         }
 
 
-        setTimeout(() => {
+        setTimeout(
+            function () {
 
-            mensagemCopia.textContent = '';
+                mensagemCopia.textContent =
+                    '';
 
-        }, 2500);
+            },
+            2000
+        );
 
     }
 );
 
 
 // ==========================================
-// 15. PRIMEIRA SENHA
+// GERA A PRIMEIRA SENHA
 // ==========================================
 
 geraSenha();
