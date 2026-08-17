@@ -5,46 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gerador de senha</title>
+    <title>Gerador de Senhas</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <section class="conteudo">
+    <main class="conteudo">
 
-        <!-- ========================= -->
-        <!-- TÍTULO -->
-        <!-- ========================= -->
+        <!-- ================================= -->
+        <!-- CABEÇALHO -->
+        <!-- ================================= -->
 
-        <div class="conteudo-titulo">
+        <section class="conteudo-titulo">
 
             <img src="cadeado.png" alt="Cadeado">
 
-            <h2 class="titulo-principal">
+            <h1 class="titulo-principal">
                 Gerador de senhas
+            </h1>
+
+            <h2 class="titulo-secundario">
+                Gere instantaneamente uma senha aleatória e segura
             </h2>
 
-            <h3 class="titulo-secundario">
-                Gere instantaneamente uma senha aleatória e segura
-            </h3>
-
-        </div>
+        </section>
 
 
-        <!-- ========================= -->
-        <!-- SENHA GERADA -->
-        <!-- ========================= -->
+        <!-- ================================= -->
+        <!-- SENHA -->
+        <!-- ================================= -->
 
-        <div class="conteudo-senha">
+        <section class="conteudo-senha">
 
             <label for="campo-senha">
-                Senha
+                Senha gerada
             </label>
 
             <input
-                name="senha"
                 type="text"
                 id="campo-senha"
                 readonly
@@ -70,14 +69,14 @@
 
             <p id="mensagem-copia"></p>
 
-        </div>
+        </section>
 
 
-        <!-- ========================= -->
-        <!-- PERSONALIZAÇÃO -->
-        <!-- ========================= -->
+        <!-- ================================= -->
+        <!-- PARÂMETROS -->
+        <!-- ================================= -->
 
-        <div class="parametro">
+        <section class="parametro">
 
             <h3 class="parametro-titulo">
                 Personalize sua senha
@@ -87,9 +86,9 @@
             <div class="parametro-coluna__senha">
 
 
-                <!-- ========================= -->
-                <!-- TAMANHO DA SENHA -->
-                <!-- ========================= -->
+                <!-- ================================= -->
+                <!-- TAMANHO -->
+                <!-- ================================= -->
 
                 <div class="parametro-senha">
 
@@ -104,7 +103,7 @@
                             class="parametro-senha__botao"
                             id="botao-diminui"
                         >
-                            -
+                            −
                         </button>
 
                         <p
@@ -124,16 +123,12 @@
 
                     </div>
 
-                    <p>
-                        Escolha entre 4 e 32 caracteres.
-                    </p>
-
                 </div>
 
 
-                <!-- ========================= -->
+                <!-- ================================= -->
                 <!-- CARACTERÍSTICAS -->
-                <!-- ========================= -->
+                <!-- ================================= -->
 
                 <div class="parametro-senha">
 
@@ -142,13 +137,10 @@
                     </h4>
 
 
-                    <!-- MAIÚSCULAS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="maiusculas"
-                            name="maiusculas"
                             type="checkbox"
                             class="checkbox"
                             checked
@@ -161,13 +153,10 @@
                     </div>
 
 
-                    <!-- MINÚSCULAS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="minusculas"
-                            name="minusculas"
                             type="checkbox"
                             class="checkbox"
                             checked
@@ -180,13 +169,10 @@
                     </div>
 
 
-                    <!-- NÚMEROS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="numeros"
-                            name="numeros"
                             type="checkbox"
                             class="checkbox"
                             checked
@@ -199,13 +185,10 @@
                     </div>
 
 
-                    <!-- SÍMBOLOS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="simbolos"
-                            name="simbolos"
                             type="checkbox"
                             class="checkbox"
                             checked
@@ -220,24 +203,21 @@
                 </div>
 
 
-                <!-- ========================= -->
-                <!-- OPÇÕES EXTRAS -->
-                <!-- ========================= -->
+                <!-- ================================= -->
+                <!-- EMOJIS -->
+                <!-- ================================= -->
 
                 <div class="parametro-senha">
 
                     <h4 class="parametro-senha__titulo">
-                        Opções extras
+                        Emojis
                     </h4>
 
 
-                    <!-- EMOJIS CARINHAS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="check-carinha"
-                            name="carinhas"
                             type="checkbox"
                             class="checkbox"
                         >
@@ -249,13 +229,10 @@
                     </div>
 
 
-                    <!-- EMOJIS ANIMAIS -->
-
-                    <div class="parametro-senha-checkbox">
+                    <div class="opcao">
 
                         <input
                             id="check-animais"
-                            name="animais"
                             type="checkbox"
                             class="checkbox"
                         >
@@ -266,32 +243,52 @@
 
                     </div>
 
+                </div>
 
-                    <!-- UNICODE -->
 
-                    <div class="parametro-senha-checkbox">
+                <!-- ================================= -->
+                <!-- CARACTERES ESPECIAIS -->
+                <!-- ================================= -->
+
+                <div class="parametro-senha">
+
+                    <h4 class="parametro-senha__titulo">
+                        Caracteres especiais
+                    </h4>
+
+
+                    <div class="opcao">
 
                         <input
                             id="check-unicode"
-                            name="unicode"
                             type="checkbox"
                             class="checkbox"
                         >
 
                         <label for="check-unicode">
-                            ★ Caracteres especiais Unicode
+                            ★ Unicode especial
                         </label>
 
                     </div>
 
+                </div>
 
-                    <!-- CIDADE -->
 
-                    <div class="parametro-senha-checkbox">
+                <!-- ================================= -->
+                <!-- CIDADES -->
+                <!-- ================================= -->
+
+                <div class="parametro-senha">
+
+                    <h4 class="parametro-senha__titulo">
+                        Localização
+                    </h4>
+
+
+                    <div class="opcao">
 
                         <input
                             id="check-cidade"
-                            name="cidade"
                             type="checkbox"
                             class="checkbox"
                         >
@@ -302,14 +299,24 @@
 
                     </div>
 
+                </div>
 
-                    <!-- SEM REPETIÇÃO -->
 
-                    <div class="parametro-senha-checkbox">
+                <!-- ================================= -->
+                <!-- NÃO REPETIR -->
+                <!-- ================================= -->
+
+                <div class="parametro-senha">
+
+                    <h4 class="parametro-senha__titulo">
+                        Segurança
+                    </h4>
+
+
+                    <div class="opcao">
 
                         <input
                             id="check-sem-repeticao"
-                            name="sem-repeticao"
                             type="checkbox"
                             class="checkbox"
                         >
@@ -323,9 +330,9 @@
                 </div>
 
 
-                <!-- ========================= -->
-                <!-- FORÇA DA SENHA -->
-                <!-- ========================= -->
+                <!-- ================================= -->
+                <!-- FORÇA -->
+                <!-- ================================= -->
 
                 <div class="parametro-senha">
 
@@ -333,34 +340,28 @@
                         Força da senha
                     </h4>
 
+
                     <div class="barra">
 
-                        <div class="forca"></div>
+                        <div
+                            class="forca"
+                            id="barra-forca"
+                        ></div>
 
                     </div>
 
 
                     <div class="parametro-senha-textos">
 
-                        <p>
-                            Fraca
-                        </p>
-
-                        <p>
-                            Média
-                        </p>
-
-                        <p>
-                            Forte
-                        </p>
+                        <p>Fraca</p>
+                        <p>Média</p>
+                        <p>Forte</p>
 
                     </div>
 
 
-                    <p class="entropia">
-                        <span id="texto-forca">
-                            -
-                        </span>
+                    <p id="texto-forca">
+                        -
                     </p>
 
                 </div>
@@ -368,9 +369,9 @@
             </div>
 
 
-            <!-- ========================= -->
+            <!-- ================================= -->
             <!-- INFORMAÇÕES -->
-            <!-- ========================= -->
+            <!-- ================================= -->
 
             <div class="informacoes">
 
@@ -385,12 +386,10 @@
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
+    </main>
 
-
-    <!-- JAVASCRIPT -->
 
     <script src="main.js"></script>
 
