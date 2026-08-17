@@ -1,398 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gerador de Senhas</title>
-
+    <title>SENHA//TERMINAL_88</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Camada de scanlines + ruído de CRT, fica por cima de tudo via CSS -->
+    <div class="crt-overlay"></div>
+    <div class="crt-flicker"></div>
 
-    <main class="conteudo">
+    <section class="conteudo">
 
-        <!-- ================================= -->
-        <!-- CABEÇALHO -->
-        <!-- ================================= -->
+        <div class="conteudo-titulo">
+            <p class="boot-linha">SYS.BOOT :: MÓDULO DE SEGURANÇA v2.5</p>
+            <h2 class="titulo-principal glitch" data-texto="GERADOR::SENHAS">GERADOR::SENHAS</h2>
+            <h3 class="titulo-secundario">// crie chaves de acesso não rastreáveis</h3>
+        </div>
 
-        <section class="conteudo-titulo">
-
-            <img src="cadeado.png" alt="Cadeado">
-
-            <h1 class="titulo-principal">
-                Gerador de senhas
-            </h1>
-
-            <h2 class="titulo-secundario">
-                Gere instantaneamente uma senha aleatória e segura
-            </h2>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- SENHA -->
-        <!-- ================================= -->
-
-        <section class="conteudo-senha">
-
-            <label for="campo-senha">
-                Senha gerada
-            </label>
-
-            <input
-                type="text"
-                id="campo-senha"
-                readonly
-            >
-
-            <div class="acoes-senha">
-
-                <button
-                    type="button"
-                    id="botao-gerar"
-                >
-                    🔄 Gerar senha
-                </button>
-
-                <button
-                    type="button"
-                    id="botao-copiar"
-                >
-                    📋 Copiar
-                </button>
-
+        <div class="conteudo-senha">
+            <label for="campo-senha">SENHA_ATUAL</label>
+            <div class="campo-senha-linha">
+                <span class="prompt">&gt;</span>
+                <input name="senha" type="text" id="campo-senha" readonly>
+                <button class="botao-copiar" id="botao-copiar" title="Copiar senha">COPIAR</button>
             </div>
+        </div>
 
-            <p id="mensagem-copia"></p>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- PARÂMETROS -->
-        <!-- ================================= -->
-
-        <section class="parametro">
-
-            <h3 class="parametro-titulo">
-                Personalize sua senha
-            </h3>
-
+        <div class="parametro">
+            <h3 class="parametro-titulo">CONFIG// personalize sua senha</h3>
 
             <div class="parametro-coluna__senha">
 
-
-                <!-- ================================= -->
-                <!-- TAMANHO -->
-                <!-- ================================= -->
-
                 <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Número de caracteres
-                    </h4>
-
+                    <h4 class="parametro-senha__titulo">Número de caracteres</h4>
                     <div class="parametro-senha-botoes">
-
-                        <button
-                            type="button"
-                            class="parametro-senha__botao"
-                            id="botao-diminui"
-                        >
-                            −
-                        </button>
-
-                        <p
-                            class="parametro-senha__texto"
-                            id="numero-senha"
-                        >
-                            12
-                        </p>
-
-                        <button
-                            type="button"
-                            class="parametro-senha__botao"
-                            id="botao-aumenta"
-                        >
-                            +
-                        </button>
-
+                        <button class="parametro-senha__botao" id="botao-menos">-</button>
+                        <p class="parametro-senha__texto">12</p>
+                        <button class="parametro-senha__botao" id="botao-mais">+</button>
                     </div>
-
                 </div>
 
-
-                <!-- ================================= -->
-                <!-- CARACTERÍSTICAS -->
-                <!-- ================================= -->
-
                 <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Características da senha
-                    </h4>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="maiusculas"
-                            type="checkbox"
-                            class="checkbox"
-                            checked
-                        >
-
-                        <label for="maiusculas">
-                            Letras maiúsculas
-                        </label>
-
+                    <h4 class="parametro-senha__titulo">Características da senha</h4>
+                    <div class="parametro-senha-checkbox">
+                        <input name="maiusculo" type="checkbox" class="checkbox" checked>
+                        <label for="maiusculo">Letras maiúsculas</label>
                     </div>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="minusculas"
-                            type="checkbox"
-                            class="checkbox"
-                            checked
-                        >
-
-                        <label for="minusculas">
-                            Letras minúsculas
-                        </label>
-
+                    <div class="parametro-senha-checkbox">
+                        <input name="minusculo" type="checkbox" class="checkbox">
+                        <label for="minusculo">Letras minúsculas</label>
                     </div>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="numeros"
-                            type="checkbox"
-                            class="checkbox"
-                            checked
-                        >
-
-                        <label for="numeros">
-                            Números
-                        </label>
-
+                    <div class="parametro-senha-checkbox">
+                        <input name="numero" type="checkbox" class="checkbox">
+                        <label for="numero">Números</label>
                     </div>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="simbolos"
-                            type="checkbox"
-                            class="checkbox"
-                            checked
-                        >
-
-                        <label for="simbolos">
-                            Símbolos
-                        </label>
-
+                    <div class="parametro-senha-checkbox">
+                        <input name="simbolo" type="checkbox" class="checkbox">
+                        <label for="simbolo">Símbolos</label>
                     </div>
-
+                    <div class="parametro-senha-checkbox">
+                        <input name="emoji" type="checkbox" class="checkbox">
+                        <label for="emoji">Emojis 👾</label>
+                    </div>
                 </div>
 
-
-                <!-- ================================= -->
-                <!-- EMOJIS -->
-                <!-- ================================= -->
-
                 <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Emojis
-                    </h4>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="check-carinha"
-                            type="checkbox"
-                            class="checkbox"
-                        >
-
-                        <label for="check-carinha">
-                            😀 Emojis de carinhas
-                        </label>
-
-                    </div>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="check-animais"
-                            type="checkbox"
-                            class="checkbox"
-                        >
-
-                        <label for="check-animais">
-                            🦁 Emojis de animais
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ================================= -->
-                <!-- CARACTERES ESPECIAIS -->
-                <!-- ================================= -->
-
-                <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Caracteres especiais
-                    </h4>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="check-unicode"
-                            type="checkbox"
-                            class="checkbox"
-                        >
-
-                        <label for="check-unicode">
-                            ★ Unicode especial
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ================================= -->
-                <!-- CIDADES -->
-                <!-- ================================= -->
-
-                <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Localização
-                    </h4>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="check-cidade"
-                            type="checkbox"
-                            class="checkbox"
-                        >
-
-                        <label for="check-cidade">
-                            🏙️ Adicionar cidade
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ================================= -->
-                <!-- NÃO REPETIR -->
-                <!-- ================================= -->
-
-                <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Segurança
-                    </h4>
-
-
-                    <div class="opcao">
-
-                        <input
-                            id="check-sem-repeticao"
-                            type="checkbox"
-                            class="checkbox"
-                        >
-
-                        <label for="check-sem-repeticao">
-                            🚫 Não repetir caracteres
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ================================= -->
-                <!-- FORÇA -->
-                <!-- ================================= -->
-
-                <div class="parametro-senha">
-
-                    <h4 class="parametro-senha__titulo">
-                        Força da senha
-                    </h4>
-
-
-                    <div class="barra">
-
-                        <div
-                            class="forca"
-                            id="barra-forca"
-                        ></div>
-
-                    </div>
-
-
+                    <h4 class="parametro-senha__titulo">Força da senha</h4>
+                    <div class="barra"></div>
+                    <div class="forca fraca"></div>
                     <div class="parametro-senha-textos">
-
                         <p>Fraca</p>
                         <p>Média</p>
                         <p>Forte</p>
-
                     </div>
-
-
-                    <p id="texto-forca">
-                        -
-                    </p>
-
+                    <p class="entropia"></p>
                 </div>
 
             </div>
+        </div>
 
+        <button class="botao-gerar" id="botao-gerar">[ GERAR NOVA SENHA ]</button>
 
-            <!-- ================================= -->
-            <!-- INFORMAÇÕES -->
-            <!-- ================================= -->
+        <p class="rodape">TERMINAL_88 // conexão criptografada // sem logs mantidos</p>
+    </section>
 
-            <div class="informacoes">
-
-                <p>
-                    Caracteres:
-                    <strong id="contador-caracteres">
-                        0
-                    </strong>
-                </p>
-
-                <p id="mensagem-erro"></p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <script src="main.js"></script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
