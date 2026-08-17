@@ -6,6 +6,21 @@ let tamanhoSenha = 12;
 
 numeroSenha.textContent = tamanhoSenha;
 
+const emojisCarinhas = ['😀','😎','🤖','👾'];
+const emojisAnimais = ['🦁','🦊','🐼','🦅'];
+if (checkAnimais.checked) {
+    senha += arrayAleatorio(emojisAnimais);
+}
+
+const unicodeEspecial = '©®™✓✿⚡🚀💎★';
+if (checkboxUnicode.checked) {
+    alfabeto += unicodeEspecial;
+}
+
+const cidades = ['Curitiba', 'Cascavel', 'Toledo'];
+let palavra = cidades[Math.floor(Math.random() * cidades.length)];
+senha = palavra + '-' + senha;
+
 const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz';
 const numeros = '0123456789';
